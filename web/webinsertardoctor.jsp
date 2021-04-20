@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <jsp:useBean id="controller" class="controllers.ControllerDoctores"
              scope="request"/>
 <!DOCTYPE html>
@@ -16,35 +17,34 @@
                     <a href="webdoctores.jsp">Volver a doctores</a>
                     <form method="post">
                         <label>Id doctor</label>
-                        <input type="text" name="cajaiddoctor"/><br/>
+                        <input type="text" name="cajaiddoctor"
+                               class="form-control"/><br/>
                         <label>Apellido</label>
-                        <input type="text" name="cajaapellido"/><br/>
+                        <input type="text" name="cajaapellido"
+                               class="form-control"/><br/>
                         <label>Especialidad</label>
-                        <input type="text" name="cajaespecialidad"/><br/>
+                        <input type="text" name="cajaespecialidad"
+                               class="form-control"/><br/>
                         <label>Salario</label>
-                        <input type="text" name="cajasalario"/><br/>
+                        <input type="text" name="cajasalario"
+                               class="form-control"/><br/>
                         <label>Hospital</label>
-                        <input type="text" name="cajahospital"/><br/>
-                        <button type="submit">
-                            Insertar doctor
+                        <input type="text" name="cajahospital"
+                               class="form-control"/><br/>
+                        <button type="submit" class="btn btn-outline-info">
+                            Insertar
                         </button>
                     </form>
-                    <%
-                    String id = request.getParameter("cajaiddoctor");
-                    if (id != null){
-                        int iddoctor = Integer.parseInt(id);
-                        String apellido = request.getParameter("cajaapellido");
-                        String especialidad = request.getParameter("cajaespecialidad");
-                        String datosalario = request.getParameter("cajasalario");
-                        String datohospital = request.getParameter("cajahospital");
-                        int salario = Integer.parseInt(datosalario);
-                        int idhospital = Integer.parseInt(datohospital);
-                        String mensaje = 
-                                controller.insertDoctor(iddoctor, apellido
-                                        , especialidad, salario, idhospital);
-                        out.println(mensaje);
-                    }
-                    %>                
+                    <c:set var="id" value="${param.cajaiddoctor}"/>
+                    <c:if test="${id != null}">
+                        <c:set var="apellido" value="${param.cajaapellido}"/>
+                        <c:set var="especialidad" value="${param.cajaespecialidad}"/>
+                        <c:set var="salario" value="${param.cajasalario}"/>
+                        <c:set var="idhospital" value="${param.cajahospital}"/>
+                        <c:set var="mensaje"
+value="${controller.insertDoctor(id, apellido, especialidad, salario, idhospital)}"/>
+                        <c:redirect url="webdoctores.jsp"/>
+                    </c:if>
                 </div>
             </main><!-- /.container -->            
         </section>        

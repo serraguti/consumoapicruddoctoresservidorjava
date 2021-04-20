@@ -13,6 +13,7 @@ public class ControllerDoctores {
         this.service = new ServiceDoctores();
     }
 
+    /*
     public String getDoctores() throws IOException {
         List<Doctor> doctores = this.service.getDoctores();
         String html = "";
@@ -33,6 +34,11 @@ public class ControllerDoctores {
             html += "</tr>";
         }
         return html;
+    }
+     */
+    public List<Doctor> getDoctores() throws IOException {
+        List<Doctor> doctores = this.service.getDoctores();
+        return doctores;
     }
 
     public String insertDoctor(int iddoctor, String apellido, String especialidad,
@@ -55,6 +61,7 @@ public class ControllerDoctores {
     //TENEMOS 2 OPCIONES:
     //1.- DIBUJAR EL FORMULARIO DINAMICAMENTE
     //2.- ENVIAR EL DOCTOR COMO OBJETO Y DIBUJAR SUS DATOS EN LA PAGINA
+    /*
     public String getDoctor(String iddoctor) throws IOException {
         Doctor doctor = this.service.findDoctor(iddoctor);
         String html = "<input type='hidden' name='iddoctor' value='"
@@ -72,6 +79,11 @@ public class ControllerDoctores {
         html += "<input type='text' name='idhospital' value='"
                 + doctor.getIdHospital() + "'/><br/>";
         return html;
+    }
+     */
+    public Doctor getDoctor(String iddoctor) throws IOException {
+        Doctor doctor = this.service.findDoctor(iddoctor);
+        return doctor;
     }
 
     public String updateDoctor(int iddoctor, String apellido,
