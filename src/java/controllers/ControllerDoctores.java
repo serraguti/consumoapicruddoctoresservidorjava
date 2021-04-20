@@ -26,6 +26,10 @@ public class ControllerDoctores {
             html += "<button type='submit' name='eliminar' value='"
                     + doc.getIdDoctor() + "'>Eliminar</button>";
             html += "</td>";
+            html += "<td>";
+            html += "<a href='webmodificardoctor.jsp?iddoctor="
+                    + doc.getIdDoctor() + "'>Editar</a>";
+            html += "</td>";
             html += "</tr>";
         }
         return html;
